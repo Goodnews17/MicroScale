@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MicroScale</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>MicroScale</h1>
+
+        <p class="subtitle">
+            Organism Size Calculator
+        </p>
+
+        <form method="POST">
+
+            <div class="form-group">
+
+                <label>Image Size</label>
+
+                <input
+                    type="number"
+                    step="any"
+                    name="image_size"
+                    placeholder="Enter image size"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Magnification</label>
+
+                <input
+                    type="number"
+                    step="any"
+                    name="magnification"
+                    placeholder="Enter magnification e.g 400"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Select Unit</label>
+
+                <select name="unit">
+
+                    <option value="mm">
+                        Millimeters (mm)
+                    </option>
+
+                    <option value="um">
+                        Micrometers (μm)
+                    </option>
+
+                    <option value="nm">
+                        Nanometers (nm)
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button type="submit">
+                Calculate Actual Size
+            </button>
+
+        </form>
+
+        {% if result %}
+
+        <div class="result-box">
+
+            <h2>Actual Size</h2>
+
+            <div class="formula">
+                Actual Size = Image Size ÷ Magnification
+            </div>
+
+            <div class="result">
+                {{ result }}
+            </div>
+
+        </div>
+
+        {% endif %}
+
+        {% if error %}
+
+        <div class="error-box">
+            {{ error }}
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>
